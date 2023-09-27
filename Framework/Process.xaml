@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>833.6,9459.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>833.6,9648</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -125,7 +125,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="635.2,9394.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="635.2,9583.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="IntTerm" />
       <Variable x:TypeArguments="x:Int32" Name="Int_CusomerAge" />
@@ -714,22 +714,24 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="Sequence --&gt; Form Fill" sap:VirtualizedContainerService.HintSize="572.8,2568" sap2010:WorkflowViewState.IdRef="Sequence_22">
+    <Sequence DisplayName="Sequence --&gt; Form Fill" sap:VirtualizedContainerService.HintSize="572.8,2942.4" sap2010:WorkflowViewState.IdRef="Sequence_22">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: UiBank" sap:VirtualizedContainerService.HintSize="483.2,2456" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="8b0a47ae-1c92-401a-91af-bdffc0508500" Version="V2">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: UiBank" sap:VirtualizedContainerService.HintSize="483.2,2830.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="8b0a47ae-1c92-401a-91af-bdffc0508500" Version="V2">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,2239.2" sap2010:WorkflowViewState.IdRef="Sequence_23">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,2613.6" sap2010:WorkflowViewState.IdRef="Sequence_23">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="Loan_Account_Number" />
+                <Variable x:TypeArguments="x:String" Name="Email" />
+                <Variable x:TypeArguments="ss:SecureString" Name="Password" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -834,6 +836,12 @@
                 </uix:NClick.Target>
               </uix:NClick>
               <ui:WriteCell Cell="[in_Config(&quot;Status_Column&quot;).ToString+(in_TransactionNumber+1).ToString]" DisplayName="Write Cell Workbook" sap:VirtualizedContainerService.HintSize="387.2,116" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="[in_Config(&quot;SheetName&quot;).ToString]" Text="[&quot;Successfully applied for the loan. Account Number: &quot;+Loan_Account_Number]" WorkbookPath="[in_Config(&quot;Read_Excel_File&quot;).ToString]" />
+              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="Gmail App Password Credentials" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="387.2,143.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_11" Password="[Password]" Username="[Email]" />
+              <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[&quot;Hi &quot;+str_CustomerName+&quot;,&quot;+vbLf+&quot;Your loan request has been approved&quot;+vbLf+&quot;Loan amount: &quot;+Int_LoanAmount.ToString+vbLf+&quot;Loan account ID: &quot;+Loan_Account_Number.ToString+vbLf+ vbLf+&quot;Thanks,&quot;+vblf+&quot;UiBank Manager&quot;]" DisplayName="Send SMTP Mail Message" Email="[Email]" EnableSSL="True" From="[in_Config(&quot;Mail_Sender&quot;).ToString]" sap:VirtualizedContainerService.HintSize="387.2,151.2" sap2010:WorkflowViewState.IdRef="SendMail_11" IgnoreCRL="False" IsBodyHtml="False" Name="UiBank Manager" Port="[Convert.ToInt32(in_Config(&quot;SMTP_Port&quot;).ToString)]" SecureConnection="Auto" SecurePassword="[Password]" Server="[in_Config(&quot;SMTP_Server&quot;).ToString]" Subject="[&quot;Loan Approved | &quot;+ str_CustomerName+&quot;| Loan Amount - &quot;+Int_LoanAmount.ToString]" To="[str_CustomerEmail]">
+                <ui:SendMail.Files>
+                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                </ui:SendMail.Files>
+              </ui:SendMail>
             </Sequence>
           </ActivityAction>
         </uix:NApplicationCard.Body>
@@ -842,51 +850,5 @@
         </uix:NApplicationCard.TargetApp>
       </uix:NApplicationCard>
     </Sequence>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="572.8,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_9">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,254.4" sap2010:WorkflowViewState.IdRef="Sequence_52">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[&quot;Transaction number count: &quot;+in_TransactionNumber.ToString]" />
-        </Sequence>
-      </ui:CommentOut.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="572.8,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_10">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,164.8" sap2010:WorkflowViewState.IdRef="Sequence_53">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <If Condition="[in_TransactionNumber = in_dt_TransactionData.Rows.Count]" sap:VirtualizedContainerService.HintSize="387.2,52.8" sap2010:WorkflowViewState.IdRef="If_10">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If.Else>
-              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_25" />
-            </If.Else>
-          </If>
-        </Sequence>
-      </ui:CommentOut.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
   </Sequence>
 </Activity>

@@ -158,7 +158,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[Mail.Subject.ToLower.Contains(in_Config(&quot;Mail_Subject_Condition1&quot;).ToString.ToLower) = true OR Mail.Subject.Contains(Now.Date.ToString(&quot;dd_MM_yyyy&quot;)) OR Mail.Attachments.Any = true]" sap:VirtualizedContainerService.HintSize="510.4,2540" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If Condition="[Mail.Subject.ToLower.Contains(in_Config(&quot;Mail_Subject_Condition1&quot;).ToString.ToLower) = true And Mail.Subject.Contains(Now.Date.ToString(&quot;dd_MM_yyyy&quot;)) And Mail.Attachments.Any = true]" sap:VirtualizedContainerService.HintSize="510.4,2540" sap2010:WorkflowViewState.IdRef="If_1">
                     <If.Then>
                       <Sequence sap:VirtualizedContainerService.HintSize="476.8,2003.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
                         <Sequence.Variables>
